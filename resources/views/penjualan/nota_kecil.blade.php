@@ -62,7 +62,7 @@
         @endif
         <h4>{{ strtoupper($setting->nama_perusahaan) }}</h4>
         <h6 style="margin-top: -20px;">{{ strtoupper($setting->alamat) }}</h6>
-        <h6 style="margin-top: -30px;" class="text-center">===================================</h6>
+        <h6 style="margin-top: -30px;" class="text-center">=============================================</h6>
     </div>
     <table style="margin-top: -30px;">
         <tr>
@@ -73,10 +73,10 @@
             <td colspan="2">Kasir: {{ auth()->user()->name }}</td>
         </tr>
         <tr>
-            <td colspan="2" class="text-center">----------------------------------</td>
+            <td colspan="2" class="text-center">---------------------------------------</td>
         </tr>
     </table>
-    <table width="100%" style="border: 0; margin-top: -12px;">
+    <table width="100%" style="border: 0; margin-top: -12px; padding-right: 10px;">
         @foreach ($detail as $item)
             <tr>
                 <td colspan="2">{{ $item->produk->nama_produk }}</td>
@@ -87,10 +87,10 @@
             </tr>
         @endforeach
         <tr>
-            <td colspan="2" class="text-center">----------------------------------</td>
+            <td colspan="2" class="text-center">-------------------------------------</td>
         </tr>
 </table>
-    <table width="100%" style="border: 0; margin-top: -10px;">
+    <table width="100%" style="border: 0; margin-top: -10px; padding-right: 10px;">
         <tr style="margin-top: -10px;">
             <td>Total Harga:</td>
             <td class="text-right">{{ format_uang($penjualan->total_harga) }}</td>
