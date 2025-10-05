@@ -16,9 +16,9 @@ class SettingTableSeeder extends Seeder
     {
         DB::table('setting')->insert([
             'id_setting' => 1,
-            'nama_perusahaan' => 'Toko Ku',
-            'alamat' => 'Jl. Kibandang Samaran Ds. Slangit',
-            'telepon' => '081234779987',
+            'nama_perusahaan' => 'Zaravela Beauty Center',
+            'alamat' => 'Jl. Raya Cikadu, Majalangu RT05 / RW02.',
+            'telepon' => '087714505901',
             'tipe_nota' => 1, // kecil
             'diskon' => 5,
             'path_logo' => '/img/logo.png',

@@ -14,7 +14,7 @@
         }
         p {
             display: block;
-            margin: 3px;
+            margin: 0px;
             font-size: 10pt;
         }
         table td {
@@ -55,64 +55,71 @@
     {!! $style !!}
 </head>
 <body onload="window.print()">
-    <button class="btn-print" style="position: absolute; right: 1rem; top: rem;" onclick="window.print()">Print</button>
+    <button class="btn-print" style="position: fixed; right: 1rem; top: rem;" onclick="window.print()">Print</button>
     <div class="text-center">
-        <h3 style="margin-bottom: 5px;">{{ strtoupper($setting->nama_perusahaan) }}</h3>
-        <p>{{ strtoupper($setting->alamat) }}</p>
+        @if (!empty($setting->path_logo))
+            <img src="{{ url('/') }}/{{ $setting->path_logo }}" alt="Logo" style="max-height:150px; margin-bottom:-50px;">
+        @endif
+        <h4>{{ strtoupper($setting->nama_perusahaan) }}</h4>
+        <h6 style="margin-top: -20px;">{{ strtoupper($setting->alamat) }}</h6>
+        <h6 style="margin-top: -30px;" class="text-center">===================================</h6>
     </div>
-    <br>
-    <div>
-        <p style="float: left;">{{ date('d-m-Y') }}</p>
-        <p style="float: right">{{ strtoupper(auth()->user()->name) }}</p>
-    </div>
-    <div class="clear-both" style="clear: both;"></div>
-    <p>No: {{ tambah_nol_didepan($penjualan->id_penjualan, 10) }}</p>
-    <p class="text-center">===================================</p>
-    
-    <br>
-    <table width="100%" style="border: 0;">
+    <table style="margin-top: -30px;">
+        <tr>
+            <td> No: {{ tambah_nol_didepan($penjualan->id_penjualan, 5) }}</td>
+            <td>Tanggal: {{ date('d-m-Y H:i:s') }}</td>
+        </tr>
+        <tr>
+            <td colspan="2">Kasir: {{ auth()->user()->name }}</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-center">----------------------------------</td>
+        </tr>
+    </table>
+    <table width="100%" style="border: 0; margin-top: -12px;">
         @foreach ($detail as $item)
             <tr>
-                <td colspan="3">{{ $item->produk->nama_produk }}</td>
+                <td colspan="2">{{ $item->produk->nama_produk }}</td>
             </tr>
             <tr>
                 <td>{{ $item->jumlah }} x {{ format_uang($item->harga_jual) }}</td>
-                <td></td>
                 <td class="text-right">{{ format_uang($item->jumlah * $item->harga_jual) }}</td>
             </tr>
         @endforeach
-    </table>
-    <p class="text-center">-----------------------------------</p>
-
-    <table width="100%" style="border: 0;">
         <tr>
+            <td colspan="2" class="text-center">----------------------------------</td>
+        </tr>
+</table>
+    <table width="100%" style="border: 0; margin-top: -10px;">
+        <tr style="margin-top: -10px;">
             <td>Total Harga:</td>
             <td class="text-right">{{ format_uang($penjualan->total_harga) }}</td>
         </tr>
-        <tr>
+        <tr style="margin-top: -10px;">
             <td>Total Item:</td>
             <td class="text-right">{{ format_uang($penjualan->total_item) }}</td>
         </tr>
-        <tr>
+        <tr style="margin-top: -10px;">
             <td>Diskon:</td>
             <td class="text-right">{{ format_uang($penjualan->diskon) }}</td>
         </tr>
-        <tr>
+        <tr style="margin-top: -10px;">
             <td>Total Bayar:</td>
             <td class="text-right">{{ format_uang($penjualan->bayar) }}</td>
         </tr>
-        <tr>
+        <tr style="margin-top: -10px;">
             <td>Diterima:</td>
             <td class="text-right">{{ format_uang($penjualan->diterima) }}</td>
         </tr>
-        <tr>
+        <tr style="margin-top: -10px;">
             <td>Kembali:</td>
             <td class="text-right">{{ format_uang($penjualan->diterima - $penjualan->bayar) }}</td>
         </tr>
     </table>
 
     <p class="text-center">===================================</p>
-    <p class="text-center">-- TERIMA KASIH --</p>
+    <p class="text-center">Telp.{{ strtoupper($setting->telepon) }}</p>
+    <p class="text-center">--Terimakasih--</p>
 
     <script>
         let body = document.body;
